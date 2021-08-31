@@ -1,0 +1,95 @@
+<%- include ('partials/_header'); -%>
+
+<div class="container" >
+
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h3>Crear Nuevo Plato</h3>
+          <form action="/add" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" name="nombre" placeholder="Nombre">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="descripcion" cols="80"
+                placeholder="Descripción del plato"
+                ></textarea>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="numeric" name="precio" placeholder="Precio">
+            </div>
+            <button class="btn btn-primary" type="submit">
+              Agregar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="col-md-8">
+      <table class="table table-bordered " style="background-color: rgb(238, 236, 234); border-radius: 8px;">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < platos.length; i++) { %>
+            <tr>
+              <td><%= i + 1%></td>
+              <td><strong><%= platos[i].nombre %></strong></td>
+              <td><p><%= platos[i].descripcion %></p></td>
+              <td><%= platos[i].precio %></td>
+              <td>
+                <a
+                  class="<%= platos[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                  href="/turn/<%= platos[i]._id %>">Disponible</a>
+                <a href="/delete/<%= platos[i]._id %>"
+                  class="btn btn-danger">
+                  Borrar
+                </a>
+                <a href="/edit/<%= platos[i]._id %>" class="btn btn-info">
+                  Editar
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+<br><br><br><br><br><br>
+
+<footer class="text-center footer-style " style="background-color: rgb(41, 58, 58); " >
+  <div class="container">
+      <div class="row">
+          <div class="col-md-4 footer-col">
+              <h3 style="color:white">Elaborado por:</h3>
+              <p style="color:white">
+                ABO & LCV
+              </p>
+              <p style="color:white">Medellín-Colombia 2021</p>
+          </div>
+          <div class="col-md-4 footer-col">
+              <h3 style="color:white">Nuestras redes</h3>
+              <p style="color:white">
+                @lasdeliciasdeandre
+            </p>
+          </div>
+          <div class="col-md-4 footer-col">
+              <h3 style="color:white">Contáctanos</h3>
+              <p style="color:white">(68)4444444</p>
+          </div>
+      </div>
+  </div>
+</footer>
